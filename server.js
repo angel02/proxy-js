@@ -27,18 +27,6 @@ http.createServer(function(req, res) {
             }
             break;
             //------------------------------------------------------------------
-        case '/download':
-            
-            break;
-        
-        case '/login':
-            
-            break;
-        
-        case '/logout':
-            
-            break;
-        
         case '/p':
             var query = url.parse(req.url, true).query
               , html = ""
@@ -49,7 +37,6 @@ http.createServer(function(req, res) {
                path: query.p,
                method: req.method,
                headers: {
-                  //cookie: req.headers['cookie'],
                   'accept-language': req.headers['accept-language'],
                   'user-agent': req.headers['user-agent'],
                   'x-region': req.headers['x-region'],
@@ -78,14 +65,16 @@ http.createServer(function(req, res) {
                   }
                   
                }).on('end', function(){
+                  // Para guardar una copia del index antes de ser procesado
                   //html && fs.writeFile('sites/Antes.html', content);
                   
                   res.writeHeader(200, {'Content-Type': data.headers['content-type']});
-                  //if (html) content = replace(content);
                   if (html) {
                      content = urls.relative(content, options.hostname);
                      content = urls.absolute(content);
                   }
+                  
+                  // Y lo imprimimos luego de se precesado para ver los cambios.
                   //html && fs.writeFile('sites/Después.html', content);
                   
                   res.end(content);
