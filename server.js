@@ -12,21 +12,6 @@ http.createServer(function(req, res) {
             res.end(file);
             break;
         //----------------------------------------------------------------------
-        case '/upload':
-            switch (req.method) {
-                case 'GET':
-                    console.log(url.parse(req.url, true).query);
-                    break;
-                case 'POST':
-                  var newfile = fs.createWriteStream('newfile.md');
-                  req.pipe(newfile);
-                  req.on('end', function(){
-                     console.log('It´s uploaded !!!');
-                  });
-                  break;
-            }
-            break;
-            //------------------------------------------------------------------
         case '/p':
             var query = url.parse(req.url, true).query
               , html = ""
@@ -84,4 +69,4 @@ http.createServer(function(req, res) {
             break;
             //------------------------------------------------------------------
     }
-}).listen(process.env.PORT);
+}).listen(process.env.PORT || 3000);
