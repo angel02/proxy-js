@@ -59,7 +59,7 @@ http.createServer(function(req, res) {
                      content = urls.absolute(content);
                   }
                   
-                  // Y lo imprimimos luego de se precesado para ver los cambios.
+                  // Y lo imprimimos luego de ser procesado para ver los cambios.
                   //html && fs.writeFile('sites/Después.html', content);
                   
                   res.end(content);
